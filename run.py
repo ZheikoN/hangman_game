@@ -5,6 +5,9 @@ print(f'Welcome to Hangman game')
 words = ("apple", "banana", "cherry")
 banned_characters = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 
+wrong_letter = []
+correct_letter = []
+
 
 def select_word():
     """
@@ -52,23 +55,25 @@ def validate_letter(letter):
     return True
 
 
-def correct_letter(word, chosen_letter):
+def game_logic(word, chosen_letter):
     print(f"{word} from correct letter fun")
     print(f"{chosen_letter} from correct letter fun")
-    wrong_letter = []
-    correct_letter = []
-    checked_letter = chosen_letter in word
-    if checked_letter is False:
-        wrong_letter.append(chosen_letter)
-        print(wrong_letter)
-        guess_letter()
-    else:
-        correct_letter.append(chosen_letter)
-        print(correct_letter)
-        guess_letter()
+    word_list = list(word)
+    while wrong_letter < 5 and correct_letter < 5:
+        if chosen_letter in word_list:
+            print("yay")
+            correct_letter.append(chosen_letter)
+        else:
+            print("nay")
+            wrong_letter.append(chosen_letter)
 
 
 word = select_word()
 chosen_letter = (guess_letter())
-correct_letter(word, chosen_letter)
+game_logic(word, chosen_letter)
+
+used_letters = wrong_letter + correct_letter
+print(f"{correct_letter} - correct letters")
+print(f"{wrong_letter} -wrong letters")
+print(f"{used_letters} - all letters")
 
