@@ -5,9 +5,6 @@ print(f'Welcome to Hangman game')
 words = ("apple", "banana", "cherry")
 banned_characters = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 
-wrong_letter = []
-correct_letter = []
-
 
 def select_word():
     """
@@ -17,72 +14,41 @@ def select_word():
     return selected_word
 
 
-# def guess_letter():
-#     """
-#     User selects a letter
-#     """
-#     while True:
-#         chosen_letter = input(f"Choose a letter: \n")    
-#         if validate_letter(chosen_letter):
-#             break
-
-#     return chosen_letter
-
-
-# def validate_letter(letter):
-#     """
-#     A validation function, that checks that user input is correct
-#     list of banned characters is being used to prevent user to 
-#     waste their attempts by using characters that are never going
-#     to be used.
-#     """
-#     try:
-        
-#         if len(letter) != 1:
-#             raise ValueError(
-#                 f"You can guess only single letter, you provided {len(letter)}"
-#             )
-#         for character in banned_characters:
-#             if letter == character:
-#                 raise ValueError(
-#                     f"You can guess only letters, you provided number: {letter}"
-#                 )
-#     except ValueError as error:
-#         print(f"Invalid data: {error}, please try again.\n")
-#         return False
-
-#     return True
-
-
 def game_logic(word):
     word_list = list(word)
-    while len(word_list) > 0 and len(wrong_letter) < 5:
-        chosen_letter = input(f"enter a letter \n")
-        if len(chosen_letter) == 1:
-            if chosen_letter in word_list:
-                print("yay")
-                correct_letter.append(chosen_letter)
-                word_list.remove(chosen_letter)
-                print(word_list)
+    wrong_letter = set()
+    correct_letter = set()
+    
+    hashed_word = ['-' for letter in word_list]
+    print("Guess the word", "".join(hashed_word))
 
+    while len(word_list) > 0 and len(wrong_letter) < 5:
+        chosen_letter = input("enter a letter \n")
+        semihashed_word = [letter if letter in correct_letter else '-' for letter in word_list]
+        print(''.join(semihashed_word))
+        if chosen_letter in banned_characters:
+            print("you can use only letters, numbers are not used")
+        elif chosen_letter in wrong_letter.union(correct_letter):
+            print("this letter was already guessed")
+        elif len(chosen_letter) > 1:
+            print(f"You can guess only single letter, you guessed {len(chosen_letter)}")
+        elif len(chosen_letter) == 1:
+            if chosen_letter in word:
+                print("yay")
+                correct_letter.add(chosen_letter)
+                print('correct letters so far:', '-'.join(correct_letter))
+                
             else:
                 print("nay")
-                wrong_letter.append(chosen_letter)
-        else:
-            raise ValueError(
-                f"You can guess only single letter {len(chosen_letter)}"
-            )
-    if len(wrong_letter) == 5:
-        print("you lost")
-    elif len(word_list) == 0:
-        print("you won!")
+                wrong_letter.add(chosen_letter)
+                guessed_letter = wrong_letter.union(correct_letter)
+                print(f"So far you have tried these letters: {guessed_letter}")            
+        
+    # if len(wrong_letter) == 5:
+    #     print("you lost")
+    # elif len(word_list) == 0:
+    #     print("you won!")
+        
 
 word = select_word()
-# chosen_letter = guess_letter()
 game_logic(word)
-
-used_letters = wrong_letter + correct_letter
-print(f"{correct_letter} - correct letters")
-print(f"{wrong_letter} - wrong letters")
-print(f"{used_letters} - all letters")
-
