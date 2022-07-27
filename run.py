@@ -17,63 +17,72 @@ def select_word():
     return selected_word
 
 
-def guess_letter():
-    """
-    User selects a letter
-    """
-    while True:
-        chosen_letter = input(f"Choose a letter: \n")    
-        if validate_letter(chosen_letter):
-            print("Data is valid!")
-            break
+# def guess_letter():
+#     """
+#     User selects a letter
+#     """
+#     while True:
+#         chosen_letter = input(f"Choose a letter: \n")    
+#         if validate_letter(chosen_letter):
+#             break
 
-    return chosen_letter
+#     return chosen_letter
 
 
-def validate_letter(letter):
-    """
-    A validation function, that checks that user input is correct
-    list of banned characters is being used to prevent user to 
-    waste their attempts by using characters that are never going
-    to be used.
-    """
-    try:
+# def validate_letter(letter):
+#     """
+#     A validation function, that checks that user input is correct
+#     list of banned characters is being used to prevent user to 
+#     waste their attempts by using characters that are never going
+#     to be used.
+#     """
+#     try:
         
-        if len(letter) != 1:
-            raise ValueError(
-                f"You can guess only single letter, you provided {len(letter)}"
-            )
-        for character in banned_characters:
-            if letter == character:
-                raise ValueError(
-                    f"You can guess only letters, you provided number: {letter}"
-                )
-    except ValueError as error:
-        print(f"Invalid data: {error}, please try again.\n")
-        return False
+#         if len(letter) != 1:
+#             raise ValueError(
+#                 f"You can guess only single letter, you provided {len(letter)}"
+#             )
+#         for character in banned_characters:
+#             if letter == character:
+#                 raise ValueError(
+#                     f"You can guess only letters, you provided number: {letter}"
+#                 )
+#     except ValueError as error:
+#         print(f"Invalid data: {error}, please try again.\n")
+#         return False
 
-    return True
+#     return True
 
 
-def game_logic(word, chosen_letter):
-    print(f"{word} from correct letter fun")
-    print(f"{chosen_letter} from correct letter fun")
+def game_logic(word):
     word_list = list(word)
-    while wrong_letter < 5 and correct_letter < 5:
-        if chosen_letter in word_list:
-            print("yay")
-            correct_letter.append(chosen_letter)
-        else:
-            print("nay")
-            wrong_letter.append(chosen_letter)
+    while len(word_list) > 0 and len(wrong_letter) < 5:
+        chosen_letter = input(f"enter a letter \n")
+        if len(chosen_letter) == 1:
+            if chosen_letter in word_list:
+                print("yay")
+                correct_letter.append(chosen_letter)
+                word_list.remove(chosen_letter)
+                print(word_list)
 
+            else:
+                print("nay")
+                wrong_letter.append(chosen_letter)
+        else:
+            raise ValueError(
+                f"You can guess only single letter {len(chosen_letter)}"
+            )
+    if len(wrong_letter) == 5:
+        print("you lost")
+    elif len(word_list) == 0:
+        print("you won!")
 
 word = select_word()
-chosen_letter = (guess_letter())
-game_logic(word, chosen_letter)
+# chosen_letter = guess_letter()
+game_logic(word)
 
 used_letters = wrong_letter + correct_letter
 print(f"{correct_letter} - correct letters")
-print(f"{wrong_letter} -wrong letters")
+print(f"{wrong_letter} - wrong letters")
 print(f"{used_letters} - all letters")
 
