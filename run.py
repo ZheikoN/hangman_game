@@ -1,9 +1,30 @@
 import random
 
-print(f'Welcome to Hangman game')
-
 words = ("apple", "banana", "cherry")
 banned_characters = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
+intro = """
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/                       
+"""
+win = """
+             ___________
+            '._==_==_=_.'
+            .-\:      /-.
+           | (|:.     |) |
+            '-|:.     |-'
+              \::.    /
+               '::. .'
+                 ) (
+               _.' '._
+Here is your trophy for beating the game!
+"""
+
 
 
 def select_word():
@@ -18,7 +39,7 @@ def game_logic(word):
     """
     This is the main logic of the game
     """
-    print("Hangman")
+    print(intro)
     hashed_word = "_" * len(word)
     print("Guessing this word: " + hashed_word)
     used_letter = []
@@ -29,10 +50,10 @@ def game_logic(word):
         if guessed_letter in word:
             if guessed_letter in used_letter:
                 print("this letter was already used")
-            elif guessed_letter not in word:
-                print(f"wrong guess, amount of lives left:{lives - 1}")
-                lives -= 1
-                used_letter.append(guessed_letter)
+            # elif guessed_letter not in word:
+            #     print(f"wrong guess, amount of lives left:{lives - 1}")
+            #     lives -= 1
+            #     used_letter.append(guessed_letter)
             elif guessed_letter in banned_characters:
                 print("no numbers please")
             else:
@@ -42,7 +63,7 @@ def game_logic(word):
                 semihashed_word = [letter if letter in success_letter else '-' for letter in word]
                 print(semihashed_word)
                 if '-' not in semihashed_word:
-                    print("you win")
+                    print(win)
                     break
         elif guessed_letter not in word:
             if guessed_letter in used_letter:
@@ -53,6 +74,7 @@ def game_logic(word):
                 used_letter.append(guessed_letter)
         else:
             print("something is wrong. Exiting \n")
+
 
 word = select_word()
 game_logic(word)
