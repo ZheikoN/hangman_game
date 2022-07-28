@@ -15,7 +15,9 @@ def select_word():
 
 def game_logic(word):
     """
-    This is the main logic of the game
+    This is the main logic of the game.
+    Bilt on if - statements the game logically
+    asses the input and decides what to do with it
     """
     print(intro)
     hashed_word = "_" * len(word)
@@ -60,6 +62,7 @@ def game_logic(word):
                 else:
                     print(over)
                     print(f"Sorry that you hang, the word was '{word}'")
+                    break
             print(f"\nWrong guess, amount of lives left: {lives}")    
         else:
             print("\nSomething is wrong. Exiting \n")
