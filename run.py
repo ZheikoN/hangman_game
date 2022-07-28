@@ -1,30 +1,8 @@
 import random
+from words import words
+from graphics import intro, four, three, two, one, over
 
-words = ("apple", "banana", "cherry")
 banned_characters = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
-intro = """
- _                                             
-| |                                            
-| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
-| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
-| | | | (_| | | | | (_| | | | | | | (_| | | | |
-|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                    __/ |                      
-                   |___/                       
-"""
-win = """
-             ___________
-            '._==_==_=_.'
-            .-\:      /-.
-           | (|:.     |) |
-            '-|:.     |-'
-              \::.    /
-               '::. .'
-                 ) (
-               _.' '._
-Here is your trophy for beating the game!
-"""
-
 
 
 def select_word():
@@ -46,34 +24,47 @@ def game_logic(word):
     success_letter = []
     lives = 5
     while lives > 0:
-        guessed_letter = input("guess your letter\n").upper()
+        guessed_letter = input("Guess your letter: \n").upper()
         if guessed_letter in word:
             if guessed_letter in used_letter:
-                print("this letter was already used")
-            # elif guessed_letter not in word:
-            #     print(f"wrong guess, amount of lives left:{lives - 1}")
-            #     lives -= 1
-            #     used_letter.append(guessed_letter)
-            elif guessed_letter in banned_characters:
-                print("no numbers please")
+                print("This letter was already used.")
+            # elif guessed_letter in banned_characters:
+            #     print("Only letters are used!")
             else:
-                print("success!")
+                print("Success!")
                 used_letter.append(guessed_letter)
                 success_letter.append(guessed_letter)
-                semihashed_word = [letter if letter in success_letter else '-' for letter in word]
-                print(semihashed_word)
-                if '-' not in semihashed_word:
+                semihashed_word = [letter if letter in success_letter else '_' for letter in word]
+                print(' '.join(semihashed_word))
+                if '_' not in semihashed_word:
                     print(win)
                     break
         elif guessed_letter not in word:
             if guessed_letter in used_letter:
-                print("this letter was already used")
+                print("\nThis letter was already used")
+            elif guessed_letter in banned_characters:
+                print("Only letters are used!")    
             else:
-                print(f"wrong guess, amount of lives left:{lives - 1}")
                 lives -= 1
                 used_letter.append(guessed_letter)
+                if lives == 4:
+                    print(four)
+                    print(f"You have tried these letters: {used_letter}")
+                elif lives == 3:
+                    print(three)
+                    print(f"You have tried these letters: {used_letter}")
+                elif lives == 2:
+                    print(two)
+                    print(f"You have tried these letters: {used_letter}")
+                elif lives == 1:
+                    print(one)
+                    print(f"You have tried these letters: {used_letter}")
+                else:
+                    print(over)
+                    print(f"Sorry that you hang, the word was '{word}'")
+            print(f"\nWrong guess, amount of lives left: {lives}")    
         else:
-            print("something is wrong. Exiting \n")
+            print("\nSomething is wrong. Exiting \n")
 
 
 word = select_word()
