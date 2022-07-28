@@ -1,6 +1,6 @@
 import random
 from words import words
-from graphics import intro, four, three, two, one, over
+from graphics import intro, four, three, two, one, over, win
 
 banned_characters = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 
