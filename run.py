@@ -28,8 +28,6 @@ def game_logic(word):
         if guessed_letter in word:
             if guessed_letter in used_letter:
                 print("This letter was already used.")
-            # elif guessed_letter in banned_characters:
-            #     print("Only letters are used!")
             else:
                 print("Success!")
                 used_letter.append(guessed_letter)
