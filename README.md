@@ -58,6 +58,7 @@ Shall the player be victorious, a trophy will be awarded.
     - https://www.youtube.com/watch?v=cJJTnI22IF8&t=2s&ab_channel=KylieYing - this was used to understand the logic behind hiding characters in the word
     - https://www.tutorialspoint.com/python/string_isalpha.htm - for isalpha() method and its uses
     - https://www.w3schools.com/python/ref_string_upper.asp - for upper() method to keep user input in uppercase
+    - https://ascii.co.uk/art - ASCII art taken from here
 
 
 -----
