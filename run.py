@@ -27,7 +27,7 @@ def game_logic(word):
     lives = 5
     while lives > 0:
         guessed_letter = input("Guess your letter: \n").upper()
-        if guessed_letter in word:
+        if guessed_letter in word and len(guessed_letter) == 1 and guessed_letter.isalpha() is True:
             if guessed_letter in used_letter:
                 print("This letter was already used.")
             else:
@@ -43,7 +43,11 @@ def game_logic(word):
             if guessed_letter in used_letter:
                 print("\nThis letter was already used")
             elif guessed_letter in banned_characters:
-                print("Only letters are used!")    
+                print("Only letters are used!")
+            elif len(guessed_letter) != 1:
+                print("Only single letters please!")
+            elif guessed_letter.isalpha() is False:
+                print("Only Letters please")
             else:
                 lives -= 1
                 used_letter.append(guessed_letter)
