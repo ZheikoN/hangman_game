@@ -4,6 +4,8 @@ Hangman game is a python terminal game, that is currently being deployed into HE
 
 The player needs to guess a word within a limit of 5 attempts. If the player cannot guess within this constraint, their character dies.
 
+![preview](./assets/readme/amiresponsive.png)
+
 ## How to play
 
 Within an intro of the game, a word will be hidden but the player can see the amount of characters the word contains. 
@@ -11,6 +13,8 @@ Within an intro of the game, a word will be hidden but the player can see the am
 The player can then guess a letter, not a number or special character, that might be in the word. Incorrect guess will result in loss of life, which is being graphically displayed to the player.
 
 Shall the player be victorious, a trophy will be awarded.
+
+![Diagram](./assets/readme/diagram.png)
 
 ## Features
 
