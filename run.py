@@ -2,8 +2,6 @@ import random
 from words import words
 from graphics import intro, four, three, two, one, over, win
 
-banned_characters = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
-
 
 def select_word():
     """
@@ -42,8 +40,6 @@ def game_logic(word):
         elif guessed_letter not in word:
             if guessed_letter in used_letter:
                 print("\nThis letter was already used")
-            elif guessed_letter in banned_characters:
-                print("Only letters are used!")
             elif len(guessed_letter) != 1:
                 print("Only single letters please!")
             elif guessed_letter.isalpha() is False:
