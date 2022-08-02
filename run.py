@@ -18,7 +18,7 @@ def game_logic(word):
     asses the input and decides what to do with it
     """
     print(intro)
-    hashed_word = "_" * len(word)
+    hashed_word = "_ " * len(word)
     print("Guessing this word: " + hashed_word)
     used_letter = []
     success_letter = []
