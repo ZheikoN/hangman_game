@@ -29,6 +29,8 @@ Shall the player be victorious, a trophy will be awarded.
 * Tested for all scenarios with special characters and letters
 * Tested for empty input
 
+### PEP8 valitated with no errors
+
 ## Bugs
 
     1. Special characters (*!"£$%^^& etc.) were possible
@@ -38,6 +40,7 @@ Shall the player be victorious, a trophy will be awarded.
     3. On Heroku, initial encrypted word does not seem to be displaying spaces between characters, resulting in unclear word guess
         - fixed by adding spaces between letters
     4. Some lines are too long
+        - fixed indentation and line breaks as per PEP8
 
 ## No other known bugs
 
