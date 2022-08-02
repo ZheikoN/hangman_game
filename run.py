@@ -14,7 +14,7 @@ def select_word():
 def game_logic(word):
     """
     This is the main logic of the game.
-    Bilt on if - statements the game logically
+    Built on if - statements the game logically
     asses the input and decides what to do with it
     """
     print(intro)
@@ -27,7 +27,7 @@ def game_logic(word):
         guessed_letter = input("Guess your letter: \n").upper()
         if guessed_letter in word and len(guessed_letter) == 1 and guessed_letter.isalpha() is True:
             if guessed_letter in used_letter:
-                print("This letter was already used.")
+                print("This letter was already used. \nUsed letters: " + "-".join(used_letter))
             else:
                 print("Success!")
                 used_letter.append(guessed_letter)
@@ -39,7 +39,7 @@ def game_logic(word):
                     break
         elif guessed_letter not in word:
             if guessed_letter in used_letter:
-                print("\nThis letter was already used")
+                print("\nThis letter was already used. \nUsed letters: " + "-".join(used_letter))
             elif len(guessed_letter) != 1:
                 print("Only single letters please!")
             elif guessed_letter.isalpha() is False:
@@ -49,23 +49,23 @@ def game_logic(word):
                 used_letter.append(guessed_letter)
                 if lives == 4:
                     print(four)
-                    print(f"You have tried these letters: {used_letter}")
+                    print("You have tried these letters: " + "-".join(used_letter))
                 elif lives == 3:
                     print(three)
-                    print(f"You have tried these letters: {used_letter}")
+                    print("You have tried these letters: " + "-".join(used_letter))
                 elif lives == 2:
                     print(two)
-                    print(f"You have tried these letters: {used_letter}")
+                    print("You have tried these letters: " + "-".join(used_letter))
                 elif lives == 1:
                     print(one)
-                    print(f"You have tried these letters: {used_letter}")
+                    print("You have tried these letters: " + "-".join(used_letter))
                 else:
                     print(over)
                     print(f"Sorry that you hang, the word was '{word}'")
                     break
             print(f"\nWrong guess, amount of lives left: {lives}")    
         else:
-            print("\nSomething is wrong. Exiting \n")
+            print("\nSomething is wrong(did you enter anything?). Try again \n")
 
 
 word = select_word()
