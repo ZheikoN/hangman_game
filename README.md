@@ -1,31 +1,61 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# HANGMAN GAME
 
-Welcome ZheikoN,
+Hangman game is a python terminal game, that is currently being deployed into HEROKU terminal and fully playable.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+The player needs to guess a word within a limit of 5 attempts. If the player cannot guess within this constraint, their character dies.
 
-## Reminders
+## How to play
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+Within an intro of the game, a word will be hidden but the player can see the amount of characters the word contains. 
 
-## Creating the Heroku app
+The player can then guess a letter, not a number or special character, that might be in the word. Incorrect guess will result in loss of life, which is being graphically displayed to the player.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+Shall the player be victorious, a trophy will be awarded.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+## Features
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+* Random word generator. 
+* Word is encrypted, so the player cannot see it straight away
+* If player guess wrong letter, it shows list of previously guessed words
+* If player guess correct letter, it will display those letters and keep rest encrypted
+* Validation for duplicate entries, numbers and special characters
+* Amount of lives is not changing if duplicate letter was guessed
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## Testing
 
-Connect your GitHub repository and deploy as normal.
+* Peers and friends used for testing functionality
+* Tested for all possible scenarios with incorrect guesses
+* Tested for all scenarios with successful guess
+* Tested for all scenarios with special characters and letters
+* Tested for empty input
 
-## Constraints
+## Bugs
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+    1. Special characters (*!"£$%^^& etc.) were possible
+        - original solution of using list of banned characters was no longer feasible. isalpha() method was implemented to address this bug
+    2. Throughout testing, multiple letters could be entered by the player
+        - new condition created that checks for amount of letters
+    3. On Heroku, initial encrypted word does not seem to be displaying spaces between characters, resulting in unclear word guess
+        - fixed by adding spaces between letters
+    4. Some lines are too long
+
+## No other known bugs
+
+# Deployment
+    This project was deployed onto Heroku
+
+## Steps
+    - Create Heroku App
+    - Set the buildbacks to python and NodeJS
+    - link Heroku app to the repository
+    - Deploy manually
+
+# Credits
+
+    - https://www.youtube.com/watch?v=cJJTnI22IF8&t=2s&ab_channel=KylieYing - this was used to understand the logic behind hiding characters in the word
+    - https://www.tutorialspoint.com/python/string_isalpha.htm - for isalpha() method and its uses
+    - https://www.w3schools.com/python/ref_string_upper.asp - for upper() method to keep user input in uppercase
+
 
 -----
 Happy coding!
