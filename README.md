@@ -24,6 +24,7 @@ Shall the player be victorious, a trophy will be awarded.
 * If player guess correct letter, it will display those letters and keep rest encrypted
 * Validation for duplicate entries, numbers and special characters
 * Amount of lives is not changing if duplicate letter was guessed
+* Messages are colorful and pleasing to the player
 
 ## Testing
 
@@ -63,3 +64,4 @@ Shall the player be victorious, a trophy will be awarded.
     - https://www.tutorialspoint.com/python/string_isalpha.htm - for isalpha() method and its uses
     - https://www.w3schools.com/python/ref_string_upper.asp - for upper() method to keep user input in uppercase
     - https://ascii.co.uk/art - ASCII art taken from here
+    - https://pypi.org/project/colorama/ - for implementing colors into the game

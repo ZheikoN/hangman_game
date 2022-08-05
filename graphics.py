@@ -21,7 +21,7 @@ win = """
 Here is your trophy for beating the game!
 """
 four = """
- 
+
 
 
 

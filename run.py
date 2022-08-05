@@ -1,4 +1,5 @@
 import random
+from colorama import Fore, Back, Style
 from words import words
 from graphics import intro, four, three, two, one, over, win
 
@@ -17,33 +18,33 @@ def game_logic(word):
     Built on if - statements the game logically
     asses the input and decides what to do with it
     """
-    print(intro)
+    print(Fore.BLUE + intro)
     hashed_word = "_ " * len(word)
     print("Guessing this word: " + hashed_word)
     used_letter = []
     success_letter = []
     lives = 5
     while lives > 0:
-        guessed_letter = input("Guess your letter: \n").upper()
+        guessed_letter = input(Fore.WHITE + "Guess your letter: \n").upper()
         if guessed_letter in word and len(guessed_letter) == 1 and \
            guessed_letter.isalpha() is True:
             if guessed_letter in used_letter:
-                print("This letter was already used. \nUsed letters: " +
-                      "-".join(used_letter))
+                print(Fore.GREEN + "This letter was already used. \n \
+                      Used letters:" + "-".join(used_letter) + Style.RESET_ALL)
             else:
-                print("Success!")
+                print(Fore.MAGENTA + "Success!" + Style.RESET_ALL)
                 used_letter.append(guessed_letter)
                 success_letter.append(guessed_letter)
                 semihashed_word = [letter if letter in success_letter else '_'
                                    for letter in word]
-                print(' '.join(semihashed_word))
+                print(Fore.BLUE + ' '.join(semihashed_word) + Style.RESET_ALL)
                 if '_' not in semihashed_word:
-                    print(win)
+                    print(Fore.YELLOW + win)
                     break
         elif guessed_letter not in word:
             if guessed_letter in used_letter:
-                print("\nThis letter was already used. \nUsed letters: " +
-                      "-".join(used_letter))
+                print(Fore.GREEN + "This letter was already used. \n \
+                      Used letters:" + "-".join(used_letter) + Style.RESET_ALL)
             elif len(guessed_letter) != 1:
                 print("Only single letters please!")
             elif guessed_letter.isalpha() is False:
@@ -51,22 +52,25 @@ def game_logic(word):
             else:
                 lives -= 1
                 used_letter.append(guessed_letter)
-                msg = "You have tried these letters: " + "-".join(used_letter)
+                msg = Fore.RED + "You have tried these letters: " +\
+                                 "-".join(used_letter) + Style.RESET_ALL
                 if lives == 4:
-                    print(four)
+                    print(Fore.RED + four)
                     print(msg)
                 elif lives == 3:
-                    print(three)
+                    print(Fore.RED + three)
                     print(msg)
                 elif lives == 2:
-                    print(two)
+                    print(Fore.RED + two)
                     print(msg)
                 elif lives == 1:
-                    print(one)
+                    print(Fore.RED + one)
                     print(msg)
                 else:
-                    print(over)
-                    print(f"Sorry that you hang, the word was '{word}'")
+                    print(Back.RED + over)
+                    print(Style.RESET_ALL)
+                    print(f"Sorry that you hang, the word was\
+                        '{Back.BLUE + word + Style.RESET_ALL}'")
                     break
             print(f"\nWrong guess, amount of lives left: {lives}")
         else:
